@@ -1,0 +1,39 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Archivos generados por el IDE Eclipse
+.classpath
+.project
+.settings/
+
+# Directorio de salida de Eclipse
+bin/
+
+# Directorio de salida de IntelliJ IDEA
+out/
+
+# Archivos generados por NetBeans
+build/
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+
+# Directorio de salida de Maven
+target/
+
+# Archivos de configuración
+*.iml
+*.ipr
+*.iws
+.idea/
+.gradle/
+.vscode/
+
+# Archivos de registro y volcados de pila
+*.log
+*.log.*
+hs_err_pid*
+
+
