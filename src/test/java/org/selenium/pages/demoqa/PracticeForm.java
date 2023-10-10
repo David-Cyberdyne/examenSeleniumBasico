@@ -1,6 +1,7 @@
 package org.selenium.pages.demoqa;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -68,5 +69,13 @@ public class PracticeForm {
     public void typeMobile(String mobile){
         waitForElement(this.mobile, 15);
         driver.findElement(this.mobile).sendKeys(mobile);
+    }
+
+    public void typeDateOfBirth(String date) throws InterruptedException {
+        waitForElement(dateOfBirth, 15);
+        driver.findElement(dateOfBirth).clear();
+        Thread.sleep(5000);
+        driver.findElement(dateOfBirth).sendKeys(date);
+        driver.findElement(dateOfBirth).sendKeys(Keys.ENTER);
     }
 }

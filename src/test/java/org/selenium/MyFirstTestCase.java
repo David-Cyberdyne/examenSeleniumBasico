@@ -65,6 +65,7 @@ public class MyFirstTestCase {
         practiceForm.typeLastName("Apellido de prueba");
         practiceForm.selectGender("other");
         practiceForm.typeMobile("123456789");
+        practiceForm.typeDateOfBirth("14 Nov 2018");
 
         Thread.sleep(5000);
         driver.quit();
