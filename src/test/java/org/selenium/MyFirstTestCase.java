@@ -11,7 +11,7 @@ public class MyFirstTestCase {
 
     @Test
     public void exercise1() throws InterruptedException {
-        WebDriver driver = new EdgeDriver();
+        WebDriver driver = new ChromeDriver();
         driver.get("https://www.estadiodeportivo.com/");
         driver.manage().window().maximize();
 
@@ -72,9 +72,33 @@ public class MyFirstTestCase {
         practiceForm.typeAddress("Dirección");
         practiceForm.typeState("NCR");
         practiceForm.typeCity("Noida");
+        practiceForm.uploadFile("C:\\Users\\dpanalca\\Downloads\\Screenshot_20230929_114813.jpg");
 
         Thread.sleep(5000);
         driver.quit();
     }
 
+    @Test
+    public void exercise5() throws InterruptedException {
+        WebDriver driver = new EdgeDriver();
+        driver.get("https://demoqa.com/automation-practice-form");
+        driver.manage().window().maximize();
+
+        PracticeForm practiceForm = new PracticeForm(driver);
+        practiceForm.typeFirstNameXPath("Nombre de prueba");
+        practiceForm.typeLastNameXPath("Apellido de prueba");
+        practiceForm.selectGenderXPath("other");
+        practiceForm.typeMobileXPath("123456789");
+        practiceForm.typeDateOfBirthXPath("14 Nov 2018");
+        practiceForm.typeSubjectsXPath("Math");
+        practiceForm.selectHobbysXPath("reading");
+        practiceForm.selectHobbysXPath("sports");
+        practiceForm.typeAddressXPath("Dirección");
+        practiceForm.typeStateXPath("NCR");
+        practiceForm.typeCityXPath("Noida");
+        practiceForm.uploadFileXPath("C:\\Users\\dpanalca\\Downloads\\Screenshot_20230929_114813.jpg");
+
+        Thread.sleep(5000);
+        driver.quit();
+    }
 }
