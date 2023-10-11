@@ -66,6 +66,12 @@ public class MyFirstTestCase {
         practiceForm.selectGender("other");
         practiceForm.typeMobile("123456789");
         practiceForm.typeDateOfBirth("14 Nov 2018");
+        practiceForm.typeSubjects("Math");
+        practiceForm.selectHobbys("reading");
+        practiceForm.selectHobbys("sports");
+        practiceForm.typeAddress("Dirección");
+        practiceForm.typeState("NCR");
+        practiceForm.typeCity("Noida");
 
         Thread.sleep(5000);
         driver.quit();
