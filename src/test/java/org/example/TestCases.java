@@ -6,12 +6,10 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pages.Confirmation;
-import pages.Homepage;
-import pages.LoginPage;
-import pages.MakeAppointment;
+import pages.*;
 import utils.General;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.System;
 import java.util.Properties;
@@ -21,9 +19,8 @@ public class TestCases {
 
     @BeforeTest
     public void initializeBrowser() throws IOException {
-        //System.setProperty("webdriver.chrome.driver", "C:\\Users\\dpanalca\\IntellijIDEA-Projects\\CursoSeleniumUdemy\\Test Basico\\src\\test\\resources\\chromedriver.exe");
-        //driver = new ChromeDriver();
-        driver = new EdgeDriver();
+        System.setProperty("webdriver.chrome.driver", "src" + File.separator + "test" + File.separator + "resources" + File.separator + "chromedriver");
+        driver = new ChromeDriver();
         driver.get(General.getUrl());
         driver.manage().window().maximize();
     }
@@ -31,45 +28,21 @@ public class TestCases {
     @Test
     public void exercise1() throws InterruptedException {
 
-        String facility = General.getFacility();
-        String program = "None";
-        String comment = "Comment";
-        String date = "10/11/2023";
-        String apply = "Yes";
+        String article = "Compresor eléctrico";
 
-        Homepage homepage = new Homepage(driver);
-        homepage.clickOnMakeAppointmentButton();
+        GoogleHome googleHome = new GoogleHome(driver);
+        googleHome.clickDenyCookies();
+        googleHome.search(article);
+        Thread.sleep(5000);
+        GoogleResults googleResults = new GoogleResults(driver);
+        googleResults.clickResult();
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeUserName();
-        loginPage.typePassword();
-        loginPage.login();
-
-        MakeAppointment makeAppointment = new MakeAppointment(driver);
-        makeAppointment.selectFacility(facility);
-        makeAppointment.checkHospitalReadmission();
-        makeAppointment.selectProgram(program);
-        makeAppointment.selectVisitDate(date);
-        makeAppointment.typeComment(comment);
-        makeAppointment.clickBookButton();
-
-        Confirmation confirmation = new Confirmation(driver);
-        confirmation.checkFacility(facility);
-        confirmation.checkApply(apply);
-        confirmation.checkVisitDate(date);
-        confirmation.checkProgram(program);
-        confirmation.checkComment(comment);
-
-        confirmation.clickMenu();
-        confirmation.clickHome();
-
-        //Thread.sleep(5000);
+        Thread.sleep(5000);
     }
 
     @Test
     public void example(){
-        String facility = General.getFacility();
-        System.out.println(facility);
+        System.out.println("Funciona");
     }
 
     @AfterTest

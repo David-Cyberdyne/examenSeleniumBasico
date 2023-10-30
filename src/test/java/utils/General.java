@@ -26,7 +26,7 @@ public class General {
     //Leer el fichero de configuración y devolver las propiedades
     public static Properties readConfigFile() throws IOException {
         // Ruta al archivo de configuración
-        String configFile = "src\\test\\resources\\config.properties";
+        String configFile = "src" + File.separator + "test" + File.separator + "resources" + File.separator + "config.properties";
 
         // Crear un objeto Properties para cargar el archivo de configuración
         Properties properties = new Properties();
