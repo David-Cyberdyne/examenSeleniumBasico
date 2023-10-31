@@ -19,8 +19,21 @@ public class General {
     public static WebElement waitForElement(WebDriver driver, By elementLocator, Integer seconds){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
         WebElement element = driver.findElement(elementLocator);
-        wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.presenceOfElementLocated(elementLocator));
         return element;
+    }
+
+    public static WebElement waitForElementClickable(WebDriver driver, By elementLocator, Integer seconds){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+        WebElement element = driver.findElement(elementLocator);
+        wait.until(ExpectedConditions.elementToBeClickable(elementLocator));
+        return element;
+    }
+
+    public static void expectPageToLoadCompletely(WebDriver driver){
+        // Espera a que la página se cargue por completo
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.jsReturnsValue("return document.readyState == 'complete';"));
     }
 
     //Leer el fichero de configuración y devolver las propiedades
@@ -52,29 +65,5 @@ public class General {
         Properties properties = General.readConfigFile();
         String url = properties.getProperty("url");
         return url;
-    }
-
-    //Leer el fichero de datos JSON usando Jackson
-    public static JsonNode readJSONData(){
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-
-            // Leer el JSON desde un archivo
-            JsonNode jsonNode = objectMapper.readTree(new File("src\\test\\resources\\userData.json")); // Reemplaza con la ubicación correcta
-
-            // Acceder a los datos del JSON según sea necesario
-            //String nombre = jsonNode.get("facility").asText();
-            //String correoElectronico = jsonNode.get("program").asText();
-
-            return jsonNode;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public static String getFacility(){
-        JsonNode jsonNode = readJSONData();
-        return jsonNode.get("facility").asText();
     }
 }
