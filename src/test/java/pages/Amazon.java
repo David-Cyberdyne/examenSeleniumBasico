@@ -10,14 +10,13 @@ import java.util.List;
 
 public class Amazon {
 
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public Amazon(WebDriver driver) {
         this.driver = driver;
     }
 
     private final By acceptCookies = By.id("sp-cc-accept");
-    private final By price = By.cssSelector("#corePrice_feature_div > div > div > span.a-price.aok-align-center > span.a-offscreen");
     private final By date = By.cssSelector("#mir-layout-DELIVERY_BLOCK-slot-PRIMARY_DELIVERY_MESSAGE_LARGE > span > span");
     private final By searchBox = By.id("twotabsearchtextbox");
     private final By searchButton = By.id("nav-search-submit-button");
@@ -37,17 +36,14 @@ public class Amazon {
     public void orderResults(String order) throws InterruptedException {
         WebElement element = General.waitForElement(driver, orderBy, 15);
 
-        // Crea un objeto Select
         Select select = new Select(element);
-
-        // Selecciona una opción por valor (cambia "valor_a_seleccionar" por el valor deseado)
         select.selectByValue(order);
         Thread.sleep(5000);
     }
     public void selectFreeShipment() throws InterruptedException {
         WebElement element = General.waitForElement(driver, freeShipment, 15);
         element.click();
-        Thread.sleep(15000);
+        Thread.sleep(5000);
     }
 
     public void clickOnSearchButton(){
@@ -65,13 +61,6 @@ public class Amazon {
         element.click();
     }
 
-    public void getPrice(){
-        WebElement element = General.waitForElement(driver, price, 15);
-        String textoDelElemento = element.getText();
-        System.out.println(textoDelElemento);
-        System.out.println(element);
-    }
-
     public void getDate(){
         WebElement element = General.waitForElement(driver, date, 15);
         String textoDelElemento = element.getText();
@@ -79,7 +68,7 @@ public class Amazon {
         System.out.println(textoDelElemento);
     }
 
-    public void getPrice2(){
+    public void getPrice(){
 
         By price = By.cssSelector("span.a-price-whole");
         By fraction = By.cssSelector("span.a-price-fraction");

@@ -47,7 +47,7 @@ public class TestCases {
          el precio y la fecha de entrega del producto*/
         Amazon amazon = new Amazon(driver);
         amazon.clickAcceptCookies();
-        amazon.getPrice2();
+        amazon.getPrice();
         amazon.getDate();
 
         /*Paso 5: usamos el buscador para encontrar el listado de productos*/

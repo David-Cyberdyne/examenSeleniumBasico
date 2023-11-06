@@ -7,7 +7,7 @@ import utils.General;
 
 public class GoogleHome {
 
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public GoogleHome(WebDriver driver) {
         this.driver = driver;
