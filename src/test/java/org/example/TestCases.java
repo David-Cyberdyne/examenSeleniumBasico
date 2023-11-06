@@ -38,7 +38,6 @@ public class TestCases {
         /*Paso 2: hacemos la búsqueda del producto.
         El producto buscado está almacenado en la variable article de este test*/
         googleHome.search(article);
-        googleHome.clickOnSearchButton();
 
         /*Paso 3: en la página de resultados buscamos el enlace que contenga la palabra Amazon y accedemos a él*/
         GoogleResults googleResults = new GoogleResults(driver);

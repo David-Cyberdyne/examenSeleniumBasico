@@ -27,10 +27,11 @@ public class Amazon {
     public void printNames(){
         By selector = By.cssSelector("h2 > a > span");
         List<WebElement> elementos = driver.findElements(selector);
-        System.out.println("Cantidad de productos" + elementos.size());
+        System.out.println("\nNombre de los " + elementos.size() + " productos");
+        System.out.println("--------------------------------------------------------");
 
         for (WebElement elemento : elementos) {
-            System.out.println(elemento.getText());
+            System.out.println("* " + elemento.getText());
             }
     }
     public void orderResults(String order) throws InterruptedException {
@@ -74,24 +75,24 @@ public class Amazon {
     public void getDate(){
         WebElement element = General.waitForElement(driver, date, 15);
         String textoDelElemento = element.getText();
-        System.out.println("Fecha de entrega: \n");
+        System.out.println("\nFecha de entrega: ");
         System.out.println(textoDelElemento);
     }
 
     public void getPrice2(){
-        // Localiza todos los elementos por su clase
-        By selector = By.cssSelector("span.a-offscreen");
-        List<WebElement> elementos = driver.findElements(selector);
 
-        // Verifica si se encontraron elementos
-        if (!elementos.isEmpty()) {
-            // Obtiene el texto del primer elemento
-            String textoDelPrimerElemento = elementos.get(0).getText();
+        By price = By.cssSelector("span.a-price-whole");
+        By fraction = By.cssSelector("span.a-price-fraction");
+        List<WebElement> prices = driver.findElements(price);
+        List<WebElement> fractions = driver.findElements(fraction);
 
-            // Imprime el texto en la consola
-            System.out.println("Texto del primer elemento: " + textoDelPrimerElemento);
+        if (!prices.isEmpty()) {
+            String euros = prices.get(0).getText();
+            String cents = fractions.get(0).getText();
+
+            System.out.println("\nPrecio del artículo: " + euros + "," + cents + "€");
         } else {
-            System.out.println("No se encontraron elementos con la clase 'a-offscreen'.");
+            System.out.println("No se encontraron elementos");
         }
     }
 }

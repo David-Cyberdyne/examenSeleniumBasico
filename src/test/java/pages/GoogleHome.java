@@ -1,10 +1,8 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import utils.General;
 
 public class GoogleHome {
@@ -16,8 +14,7 @@ public class GoogleHome {
     }
 
     private final By denyCookies = By.id("W0wltc");
-    private final By searchBox = By.id("APjFqb");
-    private final By searchButton = By.cssSelector("input[type='submit'][value='Buscar con Google']");
+    private final By searchBox = By.name("q");
 
     public void clickDenyCookies(){
         WebElement element = General.waitForElement(driver, denyCookies, 15);
@@ -27,11 +24,7 @@ public class GoogleHome {
     public void search(String text) throws InterruptedException {
         WebElement element = General.waitForElement(driver, searchBox, 15);
         element.sendKeys(text);
-        Thread.sleep(5000);
-    }
-
-    public void clickOnSearchButton() {
-        WebElement element = General.waitForElement(driver, searchButton, 15);
-        element.click();
+        element.submit();
+        Thread.sleep(2000);
     }
 }

@@ -21,13 +21,9 @@ public class GoogleResults {
         // Filtra los enlaces que contienen "amazon" en la URL
         for (WebElement enlace : enlaces) {
             String url = enlace.getAttribute("href");
-            //System.out.println("URL " + url);
             if (url != null && url.contains("amazon")) {
-                System.out.println("Hay enlace a Amazon");
-                System.out.println(url);
                 driver.get(url);
-                //enlace.click();
-                break; // Hacer clic en el primer enlace y salir del bucle
+                break;
             }
         }
     }
