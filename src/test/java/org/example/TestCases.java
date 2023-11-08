@@ -31,7 +31,8 @@ public class TestCases {
 
         /* Paso 1: acceder a Google. El navegador de abre en el paso inicial marcado como @BeforeTest, donde
         se abre Chrome y se navega a https://www.google.es que es una dirección almacenada en
-        el fichero de configuración. Después de eso se rechazan las cookies para poder seguir navegando.*/
+        el fichero de configuración config.properties almacenado en la carpeta resources.
+        Después de eso se rechazan las cookies para poder seguir navegando.*/
         GoogleHome googleHome = new GoogleHome(driver);
         googleHome.clickDenyCookies();
 
@@ -63,11 +64,6 @@ public class TestCases {
         /*Paso 8: imprimimos por consola todos los nombres de los artículos de la búsqueda, descartando el resto*/
         amazon.printNames();
 
-    }
-
-    @Test
-    public void example(){
-        System.out.println("Funciona");
     }
 
     @AfterTest

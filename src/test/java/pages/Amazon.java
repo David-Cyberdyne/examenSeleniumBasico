@@ -24,14 +24,19 @@ public class Amazon {
     private final By orderBy = By.id("s-result-sort-select");
 
     public void printNames(){
-        By selector = By.cssSelector("h2 > a > span");
-        List<WebElement> elementos = driver.findElements(selector);
-        System.out.println("\nNombre de los " + elementos.size() + " productos");
+        By names = By.cssSelector("h2 > a > span");
+        By prices = By.cssSelector((".a-section.a-spacing-small.a-spacing-top-small > div > div > div > div > div > div > a > span > span > span.a-price-whole"));
+        By cents = By.cssSelector((".a-section.a-spacing-small.a-spacing-top-small > div > div > div > div > div > div > a > span > span > span.a-price-fraction"));
+        List<WebElement> productNames = driver.findElements(names);
+        List<WebElement> productPrices = driver.findElements(prices);
+        List<WebElement> productCents = driver.findElements(cents);
+        System.out.println("\nNombre y precio de los " + productNames.size() + " productos");
         System.out.println("--------------------------------------------------------");
 
-        for (WebElement elemento : elementos) {
-            System.out.println("* " + elemento.getText());
-            }
+        for (int i = 0; i < productNames.size()-1; i++) {
+            System.out.println("* " + productNames.get(i).getText());
+            System.out.println("* " + productPrices.get(i).getText() + "," + productCents.get(i).getText() + "€");
+        }
     }
     public void orderResults(String order) throws InterruptedException {
         WebElement element = General.waitForElement(driver, orderBy, 15);
